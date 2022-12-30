@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--StyleSheet-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!--Icons-->
+    <script src="https://kit.fontawesome.com/d7ccb43ad1.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <h1>New Medication Reminder</h1>
+
+    <h2>Medication List</h2>
+    <p>Enter your medication(s) below and add them to your list <br> Once they've been added you can edit and delete the items.</p>
+    
+    <!--Info form-->
+    <form action="/addmed" method="POST">
+        <input type="text" placeholder="Medication Name" name="Medication">
+        <input type="text" placeholder="Strength and Units (325mg)" name="Strength">
+        <input type="text" placeholder="# of med to take" name="Quantity">
+        <input type="text" placeholder="Type (Tablets,capsules, etc)" name="Type">
+        <input type="text" placeholder="Time to take" name="Time">
+        <!--<textarea name="Note" id="" cols="30" rows="10"></textarea>-->
+        <button type="submit"><i class="fa-solid fa-circle-plus">Add Med</i></button>
+    </form>
+    
+    <section class="med-container">
+        <h2>Medlist</h2>
+        <section class="meds">
+       
+         <ul class= "meds-list">
+            <% Meds.forEach(med => {%> <!--"Meds" is the keyword from server.js-->
+            <li class="med-list-item">
+                <div class= "med-list-item-title">
+                    <%= med.Medication %>
+                </div>
+                <div class= "med-list-item-strength">
+                    <%= med.Strength %>
+                </div>
+                <div class= "med-list-item-quantity">
+                    <%= med.Quantity %>
+                </div>
+                <div class= "med-list-item-type">
+                    <%= med.Type %>
+                </div>
+                <div class= "med-list-item-time">
+                    <%= med.Time %>
+                </div>
+                <a href="/edit/<%=med._id%>" class="edit"><span class="fa-solid fa-pen-to-square"></span></a>
+                <a href="/remove/<%=med._id%>" class="remove"><span class="fa-solid fa-circle-xmark"></span></a>
+    
+            </li>
+           <% }) %>
+       </ul>
+        </section>
+    </section>
+    
+    <section class="takenmeds-container">
+        <h2>Meds Taken Today</h2>
+        <section class="takenmeds">
+    
+        </section>
+    </section>
+    
+    
+
+    <script src='js/main.js'></script>
+</body>
+</html>

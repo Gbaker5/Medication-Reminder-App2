@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medication Reminder</title>
+    <!--Stylesheet-->
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <!--Google Font-->
+    
+    <!--Icons-->
+    <script src="https://kit.fontawesome.com/d7ccb43ad1.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<h1>Medication Reminder</h1>
+
+<h2>Medication List</h2>
+<p>Edit your medication</p>
+
+
+
+<section class="med-container">
+    <h2>Edit Meds</h2>
+    <section class="meds">
+   
+     <ul class= "meds-list">
+        <% Meds.forEach(med => {%> <!--"Meds" is the keyword from server.js-->
+            <% if (med._id==idMed) { %>
+                <li class="med-list-item">
+                    <form action="/edit/<%=med._id%>" method="POST">
+                        <input type="text" value="<%= med.Medication %>" name="Medication">
+                        <input type="text" value="<%= med.Strength %>" name="Strength">
+                        <input type="text" value="<%= med.Quantity %>" name="Quantity">
+                        <input type="text" value="<%= med.Type %>" name="Type">
+                        <input type="text" value="<%= med.Time %>" name="Time">
+                        <!--<textarea name="Note" id="" cols="30" rows="10"></textarea>-->
+                        <button type="submit" class="submit">Submit</button>
+                        <a href="/" class="cancel"></a>
+                    </form>
+                </li>
+                <% } else { %>
+                   
+                        <li class="med-list-item">
+                            <div class= "med-list-item-title">
+                                <%= med.Medication %>
+                            </div>
+                            <div class= "med-list-item-strength">
+                                <%= med.Strength %>
+                            </div>
+                            <div class= "med-list-item-quantity">
+                                <%= med.Quantity %>
+                            </div>
+                            <div class= "med-list-item-type">
+                                <%= med.Type %>
+                            </div>
+                            <div class= "med-list-item-time">
+                                <%= med.Time %>
+                            </div>
+                            <a href="/edit/<%=med._id%>" class="edit"><span class="fa-solid fa-pen-to-square"></span></a>
+                            <a href="/remove/<%=med._id%>" class="remove"><span class="fa-solid fa-circle-xmark"></span></a>
+                
+                        </li>
+                       <% } %>
+                       <% }) %>
+                       
+                   </ul>
+
+       
+    </section>
+</section>
+
+<section class="takenmeds-container">
+    <h2>Meds Taken Today</h2>
+    <section class="takenmeds">
+
+    </section>
+</section>
+
+
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+h1{
+    color: red;
+}
+
+li{
+    width:100%;
+}
+
+.completed{
+    color: gray;
+    text-decoration: line-through;
+}
